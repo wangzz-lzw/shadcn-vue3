@@ -26,6 +26,7 @@ module.exports = {
   "rules": {
     "no-console": "warn",
     "no-unused-vars": "error",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "@typescript-eslint/no-require-imports": "off",
   }
 }
