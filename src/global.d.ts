@@ -1,4 +1,4 @@
-namespace SyncRoute {
+declare namespace SyncRoute {
   export type RouteMeta = {
     title: string;
   };
