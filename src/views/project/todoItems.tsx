@@ -11,9 +11,9 @@ const TodoItems = ({
 }) => {
     return (
         <Draggable draggableId={id} index={index}>
-            {(draggableProvider) => (
+            {(draggableProvider, snapshot) => (
                 <div
-                    className="h-20 my-2 flex cursor-pointer bg-cyan-800 items-center justify-center"
+                    className={`rounded h-20 my-2 flex cursor-pointer bg-white hover:text-white items-center justify-center hover:bg-violet-700 ${snapshot.isDragging ? 'bg-violet-800 text-white shadow-violet-900/50' : ''}`}
                     {...draggableProvider.draggableProps}
                     ref={draggableProvider.innerRef}
                     {...draggableProvider.dragHandleProps}

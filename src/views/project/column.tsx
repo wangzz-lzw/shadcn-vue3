@@ -1,6 +1,7 @@
+import LoadingPage from '@/hooks/useloading.tsx';
 import { Droppable } from 'react-beautiful-dnd';
-import TodoItems from './todoItems';
 import type { Column } from './interface.ts';
+import TodoItems from './todoItems';
 const Column = ({ item }: { item: Column }) => {
     return (
         <div className='flex flex-col'>
@@ -12,21 +13,21 @@ const Column = ({ item }: { item: Column }) => {
                 isCombineEnabled={false}
                 ignoreContainerClipping={false}
             >   
-                {(provider) => (
+                {(provider, snapshot) => (
                     <div
                         {...provider.droppableProps}
                         ref={provider.innerRef}
-                        className="flex flex-col w-60 p-4 min-h-[300px] bg-gray-100 rounded-lg"
+                        className={`flex flex-col w-60 p-4 h-full bg-gray-100 rounded-lg hover:bg-yellow-100 ${snapshot.isUsingPlaceholder ? 'bg-yellow-400' : ''}`}
                     >
                         <div className="flex flex-col  flex-1">
-                            {item.children!.map((childItem, index) => (
+                            {item.children!.length ? item.children!.map((childItem, index) => (
                                 <TodoItems
                                     key={childItem.id}
                                     id={childItem.id}
                                     name={childItem.name}
                                     index={index}
                                 />
-                            ))}
+                            )) : <LoadingPage />}
                             {provider.placeholder}
                         </div>
               
