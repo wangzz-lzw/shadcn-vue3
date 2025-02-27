@@ -19,7 +19,7 @@ export function AppSidebar() {
         return routes.map((route, index) => (
             <div key={route.meta?.title || index}>
                 {/* Collapsible for parent menus */}
-                {route.children ? (
+                {route.meta?.isMenu ? ( route.children ? (
                     <Collapsible defaultOpen className="group/collapsible">
                         <SidebarGroup>
                             <SidebarGroupLabel asChild>
@@ -49,7 +49,7 @@ export function AppSidebar() {
                         <Settings className="mr-2" size={16} />
                         <span>{route.meta?.title}</span>
                     </div>
-                )}
+                )) : null}
             </div>
         ));
     };

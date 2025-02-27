@@ -1,5 +1,9 @@
 import request from '@/lib/request';
-
-export const getTaskList = (params:any) => {
+import type { Column } from '@/views/project/interface';
+export const addtask = (params:any) => {
     return request.post('/task', params);
+};
+
+export const getTaskList = () => {
+    return request.get<Column[]>('/task');
 };

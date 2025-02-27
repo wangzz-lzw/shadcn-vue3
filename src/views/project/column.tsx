@@ -1,13 +1,13 @@
-import LoadingPage from '@/hooks/useloading.tsx';
 import { Droppable } from 'react-beautiful-dnd';
 import type { Column } from './interface.ts';
 import TodoItems from './todoItems';
+import { EmptyState } from '@/components/empty/index.tsx';
 const Column = ({ item }: { item: Column }) => {
     return (
         <div className='flex flex-col'>
-            <h1 className="text-lg font-semibold mb-2"> {item.name}</h1>
+            <h1 className="text-lg font-semibold mb-2"> {item.taskName}</h1>
             <Droppable
-                droppableId={item.id}
+                droppableId={item.taskId}
                 direction="vertical"
                 isDropDisabled={false}
                 isCombineEnabled={false}
@@ -17,17 +17,17 @@ const Column = ({ item }: { item: Column }) => {
                     <div
                         {...provider.droppableProps}
                         ref={provider.innerRef}
-                        className={`flex flex-col w-60 p-4 h-full bg-gray-100 rounded-lg hover:bg-yellow-100 ${snapshot.isUsingPlaceholder ? 'bg-yellow-400' : ''}`}
+                        className={`flex flex-col flex-1 w-60 p-4 h-full bg-gray-100 rounded-lg hover:bg-yellow-100 ${snapshot.isUsingPlaceholder ? 'bg-yellow-400' : ''}`}
                     >
-                        <div className="flex flex-col  flex-1">
+                        <div >
                             {item.children!.length ? item.children!.map((childItem, index) => (
                                 <TodoItems
-                                    key={childItem.id}
-                                    id={childItem.id}
-                                    name={childItem.name}
+                                    key={childItem.taskId}
+                                    id={childItem.taskId}
+                                    taskName={childItem.taskName}
                                     index={index}
                                 />
-                            )) : <LoadingPage />}
+                            )) : <EmptyState />}
                             {provider.placeholder}
                         </div>
               

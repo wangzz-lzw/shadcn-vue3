@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     DragDropContext,
     DropResult,
@@ -6,36 +6,24 @@ import {
 import Column from './column';
 import type { Column as ColumnProps } from './interface';
 import { Button } from '@/components/ui/button';
+import TaskFormDialog from './addTask';
 import { getTaskList } from '@/service/task';
+
 const projects :ColumnProps[]= [
-    { id: '1', name: '已结束', children: [] },
-    { id: '2', name: '进行中', children: [] },
-    { id: '3', name: '未开始', children: [] },
+    { taskId: 'completed', taskName: '已结束', children: [] },
+    { taskId: 'in_progress', taskName: '进行中', children: [] },
+    { taskId: 'pending', taskName: '未开始', children: [] },
 ];
 
 const About = () => {
-
-    const tasks :ColumnProps[]= [
-        { id: useId(), name: '消息推送改造', status:'1' },
-        { id: useId(), name: '搜索算法优化', status:'2' },
-        { id: useId(), name: '消息推送改造', status:'3' },
-        { id: useId(), name: '搜索算法优化', status:'1' },
-        { id: useId(), name: '消息推送改造', status:'3' },
-        { id: useId(), name: '搜索算法优化', status:'3' },
-    ];
+    const [ dialogOpen, setDialogOpen ] = useState(false);
     const [ projectsState, setProjectsState ] = useState(projects);
-    
-    const getTask :()=>Promise<ColumnProps[]>= () => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(tasks);
-            }, 3000);
-        });
-    };
     const init = async () => {
-        const taskList : ColumnProps[]= await getTask();
+        const { data } = await getTaskList();
+        const taskList: ColumnProps[] = data!;
+        console.log(taskList, 'taskList');
         projectsState.forEach(item => {
-            item.children = taskList.filter((task)=>item.id === task.status );
+            item.children = taskList.filter((task)=>item.taskId === task.status );
         });
         setProjectsState([ ...projectsState ]);
         console.log(projectsState, '=====>');
@@ -45,6 +33,7 @@ const About = () => {
     }, []);
 
     const onDragEnd = (result: DropResult) => {
+        console.log(result, 'result');
         const { source, destination } = result;
         console.log(source, destination);
         if (!destination) return;
@@ -57,13 +46,13 @@ const About = () => {
             }));
 
             if (source.droppableId === destination.droppableId) {
-                const columnIndex = newProjects.findIndex(p => p.id === source.droppableId);
+                const columnIndex = newProjects.findIndex(p => p.taskId === source.droppableId);
                 const items = newProjects[columnIndex].children!;
                 const [ removed ] = items.splice(source.index, 1);
                 items.splice(destination.index, 0, removed);
             } else {
-                const sourceColIndex = newProjects.findIndex(p => p.id === source.droppableId);
-                const destColIndex = newProjects.findIndex(p => p.id === destination.droppableId);
+                const sourceColIndex = newProjects.findIndex(p => p.taskId === source.droppableId);
+                const destColIndex = newProjects.findIndex(p => p.taskId === destination.droppableId);
                 
                 const [ removed ] = newProjects[sourceColIndex].children!.splice(source.index, 1);
                 newProjects[destColIndex].children!.splice(destination.index, 0, removed);
@@ -76,14 +65,16 @@ const About = () => {
             return newProjects;
         });
     };
+    
     const handleAdd = async () => {
-        const params = {
-            taskName: '随机任务',
-            taskContent: 'sssssssss',
-            taskSubTitle:''
-        };
-        const result = await getTaskList(params);
-        console.log(result);
+        // const params = {
+        //     taskName: '随机任务',
+        //     taskContent: 'sssssssss',
+        //     taskSubTitle:''
+        // };
+        // const result = await addtask(params);
+        // console.log(result);
+        setDialogOpen(true);
     };
 
     return (
@@ -95,10 +86,12 @@ const About = () => {
           
                 <DragDropContext onDragEnd={onDragEnd}>
                     {projectsState.map((item) => (
-                        <Column key={item.id} item={item} />
+                        <Column key={item.taskId} item={item} />
                     ))}
                 </DragDropContext>
             </div>
+            <TaskFormDialog open={dialogOpen} 
+                onOpenChange={setDialogOpen}/>
         </div>
    
     );

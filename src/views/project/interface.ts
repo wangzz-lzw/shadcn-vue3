@@ -1,6 +1,6 @@
 export interface Column {
-  id: string;
-  name: string;
+  taskId: string;
+  taskName: string;
   status?: string;
   children?: Column[];
 }

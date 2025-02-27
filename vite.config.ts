@@ -10,15 +10,12 @@ export default defineConfig({
         },
     },
     server: {
-        headers: {
-            'Access-Control-Allow-Origin': '*'
-        },
         cors: true,
         open: false,
         port: 5000,
         host: true,
         proxy: {
-            'api/': {
+            '/api/': {
                 // 后端地址
                 target: 'http://localhost:3000',
                 changeOrigin: true,

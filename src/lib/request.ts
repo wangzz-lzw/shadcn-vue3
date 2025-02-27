@@ -45,7 +45,7 @@ class Request {
         if (axios.isCancel(res)) {
             return Promise.reject(res);
         }
-        if (res.status === 200) {
+        if (res.data.code === 200) {
             const { showError = true } = res.config;
             const { code } = res.data;
             if (code === 200) {

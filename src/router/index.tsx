@@ -8,7 +8,8 @@ export const routes: SyncRoute.Routes[] = [
         path: "/",
         component: lazy(() => import('@/layout')),
         meta: {
-            title:'面板'
+            title: '面板',
+            isMenu:true
         },
         children: [
             {
@@ -16,6 +17,7 @@ export const routes: SyncRoute.Routes[] = [
                 component: lazy(() => import("@/views/home")),
                 meta: {
                     title: "首页",
+                    isMenu:true
                 },
             },
             {
@@ -23,10 +25,15 @@ export const routes: SyncRoute.Routes[] = [
                 component: lazy(() => import("@/views/project")),
                 meta: {
                     title: "关于",
+                    isMenu:true
                 },
             },
         ],
     },
+    {
+        path: '/login',
+        component: lazy(() => import("@/views/login")),
+    }
 ];
 const syncRouter = (table: SyncRoute.Routes[]): RouteObject[] => {
     const mRouteTable: RouteObject[] = [];
