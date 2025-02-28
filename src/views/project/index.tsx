@@ -21,7 +21,6 @@ const About = () => {
     const init = async () => {
         const { data } = await getTaskList();
         const taskList: ColumnProps[] = data!;
-        console.log(taskList, 'taskList');
         projectsState.forEach(item => {
             item.children = taskList.filter((task)=>item.taskId === task.status );
         });
@@ -43,37 +42,10 @@ const About = () => {
             source,
             destination
         };
-        const data = await updateTaskStatus(params);
-
-        console.log(data, 'data');
         
         if (!destination) return;
-        setProjectsState(prev => {
-            // 创建完全新的数组结构
-            const newProjects = prev.map(column => ({
-                ...column,
-                children: [ ...column.children! ]
-            }));
-
-            if (source.droppableId === destination.droppableId) {
-                const columnIndex = newProjects.findIndex(p => p.taskId === source.droppableId);
-                const items = newProjects[columnIndex].children!;
-                const [ removed ] = items.splice(source.index, 1);
-                items.splice(destination.index, 0, removed);
-            } else {
-                const sourceColIndex = newProjects.findIndex(p => p.taskId === source.droppableId);
-                const destColIndex = newProjects.findIndex(p => p.taskId === destination.droppableId);
-                
-                const [ removed ] = newProjects[sourceColIndex].children!.splice(source.index, 1);
-                newProjects[destColIndex].children!.splice(destination.index, 0, removed);
-                
-                // 创建新的列对象以触发重新渲染
-                newProjects[sourceColIndex] = { ...newProjects[sourceColIndex] };
-                newProjects[destColIndex] = { ...newProjects[destColIndex] };
-            }
-
-            return newProjects;
-        });
+        await updateTaskStatus(params);
+        await init();
     };
     
     const handleAdd = async () => {
