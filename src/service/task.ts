@@ -7,3 +7,7 @@ export const addtask = (params:any) => {
 export const getTaskList = () => {
     return request.get<Column[]>('/task');
 };
+
+export const updateTaskStatus = (params:any) => {
+    return request.put('/task', params);
+};

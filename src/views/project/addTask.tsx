@@ -128,7 +128,8 @@ const TaskFormDialog = (props:TaskFormProps) => {
                                     <FormLabel>任务状态 *</FormLabel>
                                     <FormControl>
                                         <Select
-                                            {...field}>
+                                            onValueChange={field.onChange} defaultValue={field.value}
+                                        >
                                             <SelectTrigger className="w-[180px]">
                                                 <SelectValue placeholder="请选择任务状态"
                                                 />

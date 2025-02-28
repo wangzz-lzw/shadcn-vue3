@@ -20,12 +20,12 @@ const Column = ({ item }: { item: Column }) => {
                         className={`flex flex-col flex-1 w-60 p-4 h-full bg-gray-100 rounded-lg hover:bg-yellow-100 ${snapshot.isUsingPlaceholder ? 'bg-yellow-400' : ''}`}
                     >
                         <div >
-                            {item.children!.length ? item.children!.map((childItem, index) => (
+                            {item.children!.length ? item.children!.map((childItem) => (
                                 <TodoItems
+                                    index={childItem.index!}
                                     key={childItem.taskId}
                                     id={childItem.taskId}
                                     taskName={childItem.taskName}
-                                    index={index}
                                 />
                             )) : <EmptyState />}
                             {provider.placeholder}

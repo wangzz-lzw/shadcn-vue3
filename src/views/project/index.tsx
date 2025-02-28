@@ -7,7 +7,7 @@ import Column from './column';
 import type { Column as ColumnProps } from './interface';
 import { Button } from '@/components/ui/button';
 import TaskFormDialog from './addTask';
-import { getTaskList } from '@/service/task';
+import { getTaskList, updateTaskStatus } from '@/service/task';
 
 const projects :ColumnProps[]= [
     { taskId: 'completed', taskName: '已结束', children: [] },
@@ -26,18 +26,28 @@ const About = () => {
             item.children = taskList.filter((task)=>item.taskId === task.status );
         });
         setProjectsState([ ...projectsState ]);
-        console.log(projectsState, '=====>');
     };
-    useEffect( () => {
-        init();
-    }, []);
 
-    const onDragEnd = (result: DropResult) => {
+    useEffect(() => {
+        if (!dialogOpen) {
+            init();
+        }
+    }, [ dialogOpen ]);
+
+    const onDragEnd = async (result: DropResult) => {
         console.log(result, 'result');
         const { source, destination } = result;
+      
         console.log(source, destination);
-        if (!destination) return;
+        const params = {
+            source,
+            destination
+        };
+        const data = await updateTaskStatus(params);
 
+        console.log(data, 'data');
+        
+        if (!destination) return;
         setProjectsState(prev => {
             // 创建完全新的数组结构
             const newProjects = prev.map(column => ({
@@ -67,13 +77,6 @@ const About = () => {
     };
     
     const handleAdd = async () => {
-        // const params = {
-        //     taskName: '随机任务',
-        //     taskContent: 'sssssssss',
-        //     taskSubTitle:''
-        // };
-        // const result = await addtask(params);
-        // console.log(result);
         setDialogOpen(true);
     };
 

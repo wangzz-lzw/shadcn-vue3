@@ -13,7 +13,7 @@ const TodoItems = ({
         <Draggable draggableId={String(id)} index={index}>
             {(draggableProvider, snapshot) => (
                 <div
-                    className={`rounded h-20 my-2 flex cursor-pointer bg-white hover:text-white items-center justify-center hover:bg-violet-300 ${snapshot.isDragging ? 'bg-violet-500 text-white shadow-violet-400/50' : ''}`}
+                    className={`rounded h-20 my-2 flex cursor-pointer bg-white hover:text-white items-center justify-center hover:bg-indigo-300 ${snapshot.isDragging ? 'bg-indigo-500 text-white shadow-indigo-400' : ''}`}
                     {...draggableProvider.draggableProps}
                     ref={draggableProvider.innerRef}
                     {...draggableProvider.dragHandleProps}
