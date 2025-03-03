@@ -4,21 +4,25 @@ const TodoItems = ({
     id,
     taskName,
     index,
+    taskContent
 }: {
   id: string;
   index: number;
-  taskName: string;
+        taskName: string;
+        taskContent: string;
 }) => {
     return (
         <Draggable draggableId={String(id)} index={index}>
             {(draggableProvider, snapshot) => (
                 <div
-                    className={`rounded h-20 my-2 flex cursor-pointer bg-white hover:text-white items-center justify-center hover:bg-indigo-300 ${snapshot.isDragging ? 'bg-indigo-500 text-white shadow-indigo-400' : ''}`}
+                    className={`rounded h-28 my-2  flex cursor-pointer flex-col bg-violet-100 hover:text-white  hover:bg-violet-300 ${snapshot.isDragging ? 'text-white' : ''}`}
                     {...draggableProvider.draggableProps}
                     ref={draggableProvider.innerRef}
-                    {...draggableProvider.dragHandleProps}
                 >
-                    {taskName}
+                    <h1 className={`text-lg rounded px-2 ${snapshot.isDragging ? 'bg-violet-600' : ''}`}
+                        {...draggableProvider.dragHandleProps}
+                    > {taskName} </h1>
+                    <div className='px-2'>{taskContent}</div>
                 </div>
             )}
         </Draggable>

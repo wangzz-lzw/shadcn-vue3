@@ -22,7 +22,7 @@ const About = () => {
         const { data } = await getTaskList();
         const taskList: ColumnProps[] = data!;
         projectsState.forEach(item => {
-            item.children = taskList.filter((task)=>item.taskId === task.status );
+            item.children = taskList.filter((task)=>item.taskId === task.status ).sort((a, b)=> a.index! - b.index!);
         });
         setProjectsState([ ...projectsState ]);
     };
@@ -34,10 +34,9 @@ const About = () => {
     }, [ dialogOpen ]);
 
     const onDragEnd = async (result: DropResult) => {
-        console.log(result, 'result');
         const { source, destination } = result;
+        if ((source.droppableId === destination?.droppableId) && (source.index === destination.index)) return;
       
-        console.log(source, destination);
         const params = {
             source,
             destination

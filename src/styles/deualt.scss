@@ -11,3 +11,21 @@
 body.suppress-movement-transition [data-rbd-drag-handle-context-id] {
   transition: none !important;
 }
+
+@property --mation {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: true;
+}
+
+.mation {
+  --mation: 0deg;
+  background-image: linear-gradient(var(--mation), indigo, transparent 30%);
+  animation: demo 10s linear infinite forwards;
+}
+
+@keyframes demo {
+  to {
+    --mation: 360deg;
+  }
+}
