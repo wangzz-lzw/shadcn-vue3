@@ -168,6 +168,9 @@ importers:
       typescript-eslint:
         specifier: ^8.24.1
         version: 8.24.1(eslint@8.57.1)(typescript@5.7.3)
+      vite-plugin-cdn2:
+        specifier: ^1.1.0
+        version: 1.1.0(rollup@4.34.8)
 
 packages:
 
@@ -981,6 +984,15 @@ packages:
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
     engines: {node: '>= 8.0.0'}
 
+  '@rollup/pluginutils@5.1.4':
+    resolution: {integrity: sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+
   '@rollup/rollup-android-arm-eabi@4.34.8':
     resolution: {integrity: sha512-q217OSE8DTp8AFHuNHXo0Y86e1wtlfVrXiAlwkIvGRQv9zbc6mE3sjIVfwI8sYUyNxwOg0j/Vm1RKM04JcWLJw==}
     cpu: [arm]
@@ -1235,6 +1247,63 @@ packages:
 
   '@vue/shared@3.5.13':
     resolution: {integrity: sha512-/hnE/qP5ZoGpol0a5mDi45bOd7t3tjYJBjsgCsivow7D48cJeV5l05RD82lPqi7gRiphZM37rnhW1l6ZoCNNnQ==}
+
+  '@xn-sakina/rml-darwin-arm64@2.5.1':
+    resolution: {integrity: sha512-opF0AyFOYXkVoibAFh6tLgYHETduN3/aubxGJXOYkAcW4b4YMmDKXqU7UDjsNse3D/5T+8XFxUIl4E0+lHPRxg==}
+    engines: {node: '>=14'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@xn-sakina/rml-darwin-x64@2.5.1':
+    resolution: {integrity: sha512-kWcLQgAZ7aNP10URYxzsWFJH6rMZvGmX904644TEMzTrv1EaqZj0qQwQ34aFq5WX9ze0/MpzlvZ/w0hJIqQH8Q==}
+    engines: {node: '>=14'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@xn-sakina/rml-linux-arm-gnueabihf@2.5.1':
+    resolution: {integrity: sha512-HlQ85PvF+MyOeAScdarAkPpI+PS0u8qh9AAvsRRolhQ8kehHvTzMYFiLAerIZEaRHTHMpgVIhttcZ6ZWKdTUpQ==}
+    engines: {node: '>=14'}
+    cpu: [arm]
+    os: [linux]
+
+  '@xn-sakina/rml-linux-arm64-gnu@2.5.1':
+    resolution: {integrity: sha512-9GQDgAUNqErwC/OftCCch0199zjALgVopTu+FSwQS2ECW4n+sumeyF18xtGQAj4NQUYNn9HseT+7cn3gk7f7HA==}
+    engines: {node: '>=14'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@xn-sakina/rml-linux-arm64-musl@2.5.1':
+    resolution: {integrity: sha512-pN+F/V9H/HZvlovD9T/zeAvXE45qvzti8WD9m7T+fa9A6qdmBwSJTFZeEa0c+lP66r+1OSv9BIir1iMi99wvHw==}
+    engines: {node: '>=14'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@xn-sakina/rml-linux-x64-gnu@2.5.1':
+    resolution: {integrity: sha512-9y5LnhD0N9Hh36CwhlYwO/AiAz+LGAQvYLt9JfGuSTy/m5A4npqSOC4zaGx3hjAIu56FyxfHP3PJHW3opw0mzg==}
+    engines: {node: '>=14'}
+    cpu: [x64]
+    os: [linux]
+
+  '@xn-sakina/rml-linux-x64-musl@2.5.1':
+    resolution: {integrity: sha512-x5TJC6KRG9ATZvVqL5TJBUGN3sVjbw00TCulrdVcxWAv352sxM+yYvxZsMq6yxbU8Y3jAOX36mbZSKcAkR4XYg==}
+    engines: {node: '>=14'}
+    cpu: [x64]
+    os: [linux]
+
+  '@xn-sakina/rml-wasm@2.5.1':
+    resolution: {integrity: sha512-wbC44ng2FZpSV7VokfEMtjdnW7zA5LMrquWE6gEi2lVwJEWMknmu3qUNa6nQqdEqRwP1/xrE7NL9YdLU/Y65BA==}
+
+  '@xn-sakina/rml-win32-arm64-msvc@2.5.1':
+    resolution: {integrity: sha512-KCe+wursdZFNM3yfQgwX+6Bgs40t4bg2LLz1DXslZ35dEM64bbAngi4anqr5tdllS4146+Gn5L71DGrxytR8Kw==}
+    engines: {node: '>=14'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@xn-sakina/rml-win32-x64-msvc@2.5.1':
+    resolution: {integrity: sha512-v56lTBAmggAppgohjSVwxbhWniaN+KP5HK/zTQO2OaTdSBUHzufFp9Wt/M/bMRvuhjZzkAp2WNkiYWLJyB3sXg==}
+    engines: {node: '>=14'}
+    cpu: [x64]
+    os: [win32]
 
   '@zip.js/zip.js@2.7.57':
     resolution: {integrity: sha512-BtonQ1/jDnGiMed6OkV6rZYW78gLmLswkHOzyMrMb+CAR7CZO8phOHO6c2qw6qb1g1betN7kwEHhhZk30dv+NA==}
@@ -2602,6 +2671,10 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
 
+  picomatch@4.0.2:
+    resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
+    engines: {node: '>=12'}
+
   pidtree@0.6.0:
     resolution: {integrity: sha512-eG2dWTVw5bzqGRztnHExczNxt5VGsE6OwTeCG3fdUf9KBsZzO3R5OIIIzWR+iZA0NtZ+RDVdaoE2dK1cn6jH4g==}
     engines: {node: '>=0.10'}
@@ -2878,6 +2951,10 @@ packages:
     resolution: {integrity: sha512-489gTVMzAYdiZHFVA/ig/iYFllCcWFHMvUHI1rpFmkoUtRlQxqh6/yiNqnYibjMZ2b/+FUQwldG+aLsEt6bglQ==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
+
+  rs-module-lexer@2.5.1:
+    resolution: {integrity: sha512-Zud7if8vr+tCEf7LjGY7ReHyjCrSZrM4feQbWrUtrQ3c1ljDRSQ8zpdc89DCCgWyZyvMTIcInu9BxkrSUtFGyA==}
+    engines: {node: '>=14'}
 
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
@@ -3380,6 +3457,9 @@ packages:
 
   varint@6.0.0:
     resolution: {integrity: sha512-cXEIW6cfr15lFv563k4GuVuW/fiwjknytD37jIOLSdSWuOI6WnO/oKwmP2FQTU2l01LP8/M5TSAJpzUaGe3uWg==}
+
+  vite-plugin-cdn2@1.1.0:
+    resolution: {integrity: sha512-mqz9frTLpwT7XVuJppb/OmsEaJOxcY5Xt/+VOeewQAJTsl91TZe1ySv+YyoQbVn+BQbamNHZbUteIuoQzRFdpQ==}
 
   vite-plugin-cesium@1.2.23:
     resolution: {integrity: sha512-x9A8ZCEoegceXg/E+LnxKr0XBsI9CR4cgYWQ2Dd3cUEYwKcTnHQ3kBfpol7BUcGtgQnQos/mtVrRmuVQBXFjHw==}
@@ -4310,6 +4390,14 @@ snapshots:
       estree-walker: 2.0.2
       picomatch: 2.3.1
 
+  '@rollup/pluginutils@5.1.4(rollup@4.34.8)':
+    dependencies:
+      '@types/estree': 1.0.6
+      estree-walker: 2.0.2
+      picomatch: 4.0.2
+    optionalDependencies:
+      rollup: 4.34.8
+
   '@rollup/rollup-android-arm-eabi@4.34.8':
     optional: true
 
@@ -4599,6 +4687,35 @@ snapshots:
       vue: 3.5.13(typescript@5.7.3)
 
   '@vue/shared@3.5.13': {}
+
+  '@xn-sakina/rml-darwin-arm64@2.5.1':
+    optional: true
+
+  '@xn-sakina/rml-darwin-x64@2.5.1':
+    optional: true
+
+  '@xn-sakina/rml-linux-arm-gnueabihf@2.5.1':
+    optional: true
+
+  '@xn-sakina/rml-linux-arm64-gnu@2.5.1':
+    optional: true
+
+  '@xn-sakina/rml-linux-arm64-musl@2.5.1':
+    optional: true
+
+  '@xn-sakina/rml-linux-x64-gnu@2.5.1':
+    optional: true
+
+  '@xn-sakina/rml-linux-x64-musl@2.5.1':
+    optional: true
+
+  '@xn-sakina/rml-wasm@2.5.1': {}
+
+  '@xn-sakina/rml-win32-arm64-msvc@2.5.1':
+    optional: true
+
+  '@xn-sakina/rml-win32-x64-msvc@2.5.1':
+    optional: true
 
   '@zip.js/zip.js@2.7.57': {}
 
@@ -6061,6 +6178,8 @@ snapshots:
 
   picomatch@2.3.1: {}
 
+  picomatch@4.0.2: {}
+
   pidtree@0.6.0: {}
 
   pify@2.3.0: {}
@@ -6361,6 +6480,18 @@ snapshots:
       '@rollup/rollup-win32-ia32-msvc': 4.34.8
       '@rollup/rollup-win32-x64-msvc': 4.34.8
       fsevents: 2.3.3
+
+  rs-module-lexer@2.5.1:
+    optionalDependencies:
+      '@xn-sakina/rml-darwin-arm64': 2.5.1
+      '@xn-sakina/rml-darwin-x64': 2.5.1
+      '@xn-sakina/rml-linux-arm-gnueabihf': 2.5.1
+      '@xn-sakina/rml-linux-arm64-gnu': 2.5.1
+      '@xn-sakina/rml-linux-arm64-musl': 2.5.1
+      '@xn-sakina/rml-linux-x64-gnu': 2.5.1
+      '@xn-sakina/rml-linux-x64-musl': 2.5.1
+      '@xn-sakina/rml-win32-arm64-msvc': 2.5.1
+      '@xn-sakina/rml-win32-x64-msvc': 2.5.1
 
   run-parallel@1.2.0:
     dependencies:
@@ -6925,6 +7056,18 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   varint@6.0.0: {}
+
+  vite-plugin-cdn2@1.1.0(rollup@4.34.8):
+    dependencies:
+      '@babel/core': 7.26.9
+      '@rollup/pluginutils': 5.1.4(rollup@4.34.8)
+      '@xn-sakina/rml-wasm': 2.5.1
+      debug: 4.4.0
+      magic-string: 0.30.17
+      rs-module-lexer: 2.5.1
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
 
   vite-plugin-cesium@1.2.23(cesium@1.126.0)(rollup@4.34.8)(vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(sass-embedded@1.85.0)(yaml@2.7.0)):
     dependencies:
