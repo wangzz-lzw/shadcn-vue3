@@ -31,11 +31,6 @@ export default defineConfig({
             'react-router-dom',
             'axios',
             'zod',
-            {
-                name: 'shadcn-ui',
-                var: 'ShadcnUI',
-                path: 'https://cdn.jsdelivr.net/npm/shadcn-ui@0.9.4/dist/index.js'
-            },
             ...Object.entries(customCDNMappings).map(([ name, config ]) => ({
                 name,
                 var: config.var,
