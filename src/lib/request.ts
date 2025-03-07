@@ -45,7 +45,7 @@ class Request {
         if (axios.isCancel(res)) {
             return Promise.reject(res);
         }
-        if (res.data.code === 200) {
+        if (res.data?.code === 200) {
             const { showError = true } = res.config;
             const { code } = res.data;
             if (code === 200) {
@@ -56,10 +56,15 @@ class Request {
                 }
                 return Promise.reject(res.data);
             }
-        } else {
+        } else if (res.data?.code === 401) {
+            localStorage.removeItem('token');
+            window.location.href = '/login';
+            
+        }
+        else {
             const { showError = true } = res.config;
             if (showError) {
-                console.log('error');
+                console.error(res.response.data.message || res.message || res.data?.message);
             }
         }
         return Promise.reject(res);
@@ -68,6 +73,10 @@ class Request {
     setInterceptors(request: AxiosInstance) {
         // 请求拦截器
         request.interceptors.request.use(config => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                config.headers.Authorization = `Bearer ${token}`;
+            }
             // 实例化控制器
             const controller = new AbortController();
             // 将控制器实例与请求绑定

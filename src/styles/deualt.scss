@@ -29,3 +29,26 @@ body.suppress-movement-transition [data-rbd-drag-handle-context-id] {
     --mation: 360deg;
   }
 }
+@keyframes background {
+  0% {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  }
+  50% {
+    background: linear-gradient(135deg, #4ecdc4, #45b7d1);
+  }
+  100% {
+    background: linear-gradient(225deg, #45b7d1, #96f2d7);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translate(var(--x), var(--y));
+  }
+  50% {
+    transform: translate(calc(var(--x) + 100%), calc(var(--y) + 100%));
+  }
+  100% {
+    transform: translate(var(--x), var(--y));
+  }
+}

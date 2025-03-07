@@ -33,7 +33,7 @@ export const routes: SyncRoute.Routes[] = [
     {
         path: '/login',
         component: lazy(() => import("@/views/login")),
-    }
+    },
 ];
 const syncRouter = (table: SyncRoute.Routes[]): RouteObject[] => {
     const mRouteTable: RouteObject[] = [];
