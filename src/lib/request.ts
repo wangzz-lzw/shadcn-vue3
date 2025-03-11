@@ -41,6 +41,7 @@ class Request {
      * @param res
      */
     handleResponse(res: AxiosResponse & any) {
+        console.log(res, 'res===<<');
         // 请求完成后，将控制器实例从Map中移除
         if (axios.isCancel(res)) {
             return Promise.reject(res);
@@ -56,10 +57,9 @@ class Request {
                 }
                 return Promise.reject(res.data);
             }
-        } else if (res.data?.code === 401) {
+        } else if (res.data?.code === 401 || res.status === 401) {
             localStorage.removeItem('token');
             window.location.href = '/login';
-            
         }
         else {
             const { showError = true } = res.config;

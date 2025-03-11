@@ -13,10 +13,14 @@ export const routes: SyncRoute.Routes[] = [
         },
         children: [
             {
-                path: "/",
-                component: lazy(() => import("@/views/home")),
+                path: '/',
+                redirect: '/dashboard' // 根路径重定向
+            },
+            {
+                path: '/dashboard',
+                component: lazy(() => import("@/views/dashboard")),
                 meta: {
-                    title: "首页",
+                    title: '面板',
                     isMenu:true
                 },
             },
@@ -28,6 +32,7 @@ export const routes: SyncRoute.Routes[] = [
                     isMenu:true
                 },
             },
+
         ],
     },
     {
@@ -42,8 +47,8 @@ const syncRouter = (table: SyncRoute.Routes[]): RouteObject[] => {
             path: route.path,
             element: (
                 <Suspense fallback={ <LoadingPage /> }>
-                    <route.component />
-                </Suspense>
+                    {route.component ?<route.component />:null}
+                </Suspense> 
             ),
             children: route.children && syncRouter(route.children)
         });

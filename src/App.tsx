@@ -5,7 +5,8 @@ const App: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const checkAuth = () => {
-        return true;
+        const token = localStorage.getItem('token');
+        return !!token;
     };
     useEffect(() => {
         const isAuthenticated = checkAuth();

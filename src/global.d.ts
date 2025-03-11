@@ -6,9 +6,10 @@ declare namespace SyncRoute {
   };
   export type Routes = {
     path: string;
-    component: React.LazyExoticComponent<any>;
+    component?: React.LazyExoticComponent<any>;
     children?: Routes[];
     meta?: RouteMeta;
+    redirect?:string
   };
 }
 

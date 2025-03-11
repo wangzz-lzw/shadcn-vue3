@@ -16,7 +16,7 @@ import { routes } from '@/router';
 export function AppSidebar() {
     // 递归渲染路由菜单
     const renderRoutes = (routes: SyncRoute.Routes[]) => {
-        return routes.map((route, index) => (
+        return routes[0]!.children!.map((route, index) => (
             <div key={route.meta?.title || index}>
                 {/* Collapsible for parent menus */}
                 {route.meta?.isMenu ? ( route.children ? (
