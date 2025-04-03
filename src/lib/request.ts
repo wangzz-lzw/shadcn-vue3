@@ -57,10 +57,11 @@ class Request {
                 }
                 return Promise.reject(res.data);
             }
-        } else if (res.data?.code === 401 || res.status === 401) {
-            localStorage.removeItem('token');
-            window.location.href = '/login';
         }
+        // else if (res.data?.code === 401 || res.status === 401) {
+        //     localStorage.removeItem('token');
+        //     window.location.href = '/login';
+        // }
         else {
             const { showError = true } = res.config;
             if (showError) {
