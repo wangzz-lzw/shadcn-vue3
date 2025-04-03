@@ -24,5 +24,5 @@ export const getQrcode = () => {
 };
 
 export const getQrcodeStatus = (qrcodeId:string)=>{
-    return request.get<QrcodeData>(`/qrcode/getQrcodeStatus/${qrcodeId}`);
+    return request.get<QrcodeData>(`/qrcode/getQrcodeStatus/${qrcodeId}?t=${Math.random()}`);
 };
